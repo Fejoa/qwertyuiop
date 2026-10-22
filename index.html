@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CurioLoop — Choose Your Door</title>
+<style>
+  :root {
+    --background: #17132b;
+    --card: #292143;
+    --accent: #d7b8ff;
+    --text: #fff9ff;
+    --muted: #d0c6e3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 20px; font-family: Arial, sans-serif;
+    background: var(--background); color: var(--text); text-align: center;
+  }
+  .container { max-width: 1000px; margin: auto; }
+  .tagline { color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 12px; }
+  h1 { font-size: clamp(36px, 6vw, 58px); margin-bottom: 12px; }
+  .intro { color: var(--muted); line-height: 1.6; max-width: 600px; margin: 0 auto 32px; }
+  .doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .door {
+    min-height: 340px; padding: 0; border: 2px solid #ffffff35; border-radius: 22px;
+    overflow: hidden; cursor: pointer; background-size: cover; background-position: center;
+    background-repeat: no-repeat; background-color: var(--card);
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .door:hover { transform: translateY(-7px); border-color: var(--accent); }
+  .door:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  .explorer { background-image: url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=700&q=85"); }
+  .detective { background-image: url("https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=700&q=85"); }
+  .people-watcher { background-image: url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=700&q=85"); }
+  #result { display: none; margin-top: 28px; padding: 28px; background: var(--card); border: 1px solid #ffffff25; border-radius: 22px; text-align: left; }
+  #result h2 { color: var(--accent); }
+  #result p { line-height: 1.7; }
+  .next-detour { padding: 16px; margin-top: 18px; border-radius: 14px; background: #ffffff0d; }
+  .reset { padding: 12px 18px; border: 0; border-radius: 30px; background: var(--accent); color: #211632; font-weight: bold; cursor: pointer; }
+  .note { margin: 28px auto 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+  @media (max-width: 650px) {
+    .doors { grid-template-columns: 1fr; }
+    .door { min-height: 260px; }
+    body { padding: 28px 16px; }
+  }
+</style>
+</head>
+<body>
+<main class="container">
+  <p class="tagline">A little door into your mind</p>
+  <h1>Which door would you open? ✨</h1>
+  <p class="intro">Three doors. Three paths of curiosity. Trust your instinct and choose the image that draws you in.</p>
+
+  <section class="doors" aria-label="Choose a door">
+    <button class="door explorer" onclick="reveal(0)" aria-label="Choose the first door"></button>
+    <button class="door detective" onclick="reveal(1)" aria-label="Choose the second door"></button>
+    <button class="door people-watcher" onclick="reveal(2)" aria-label="Choose the third door"></button>
+  </section>
+
+  <section id="result" aria-live="polite">
+    <h2 id="result-title"></h2>
+    <p id="result-description"></p>
+    <div class="next-detour">
+      <strong>Your next CurioLoop detour:</strong>
+      <p id="result-detour"></p>
+    </div>
+    <button class="reset" onclick="resetResult()">Choose another door ↺</button>
+  </section>
+
+  <p class="note">Just for fun: your choice offers a playful reflection of your curiosity, not a scientific personality assessment.</p>
+</main>
+
+<script>
+  const profiles = [
+    {
+      title: "🌿 The Explorer",
+      description: "You may enjoy discovering unfamiliar ideas and exploring simply for the joy of learning. Research on curiosity links some forms of exploration with enjoyment of new knowledge and experiences.",
+      detour: "Some birds can use Earth's magnetic field to help them navigate. How do scientists think this works?"
+    },
+    {
+      title: "🔎 The Detective",
+      description: "You may be drawn to unanswered questions and missing pieces of information. Researchers describe a form of curiosity driven by the desire to close a knowledge gap and find an explanation.",
+      detour: "Why can the Moon appear larger near the horizon even though its apparent size barely changes?"
+    },
+    {
+      title: "🌙 The People-Watcher",
+      description: "You may enjoy exploring people's perspectives, motivations and experiences. Social curiosity involves wanting to learn about other people and understand how they see the world.",
+      detour: "Why can the same gesture mean different things in different cultures?"
+    }
+  ];
+
+  function reveal(index) {
+    const profile = profiles[index];
+    document.getElementById("result-title").textContent = profile.title;
+    document.getElementById("result-description").textContent = profile.description;
+    document.getElementById("result-detour").textContent = profile.detour;
+    document.getElementById("result").style.display = "block";
+    document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function resetResult() {
+    document.getElementById("result").style.display = "none";
+  }
+</script>
+</body>
+</html>
