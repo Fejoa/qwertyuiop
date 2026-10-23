@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Find the Real You — CurioLoop</title>
+<meta name="description" content="A playful personality quiz to explore how you recharge, notice the world, make decisions and organise your life.">
+<style>
+:root{--bg:#100d20;--panel:#1c1732;--panel2:#251d40;--ink:#f8f5ff;--muted:#c2b8df;--pink:#ffb8df;--lav:#c6b8ff;--mint:#a9f0d1;--line:#3d315c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#30214f 0,transparent 42%),var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}a{color:var(--pink)}.wrap{width:min(850px,92%);margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;color:var(--muted);font-size:.92rem}.brand{font-weight:850;letter-spacing:.04em;color:var(--ink)}.brand span{color:var(--pink)}.hero{text-align:center;padding:45px 0 24px}.eyebrow{color:var(--mint);font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.hero h1{font-size:clamp(2.5rem,8vw,5rem);line-height:1.02;letter-spacing:-.055em;margin:15px 0}.hero h1 em{font-style:normal;color:var(--pink)}.hero p{max-width:580px;margin:18px auto;color:var(--muted);font-size:1.08rem}.spark{font-size:2rem}.panel{background:linear-gradient(145deg,#211a39,#171328);border:1px solid var(--line);border-radius:26px;padding:clamp(20px,5vw,38px);margin:20px auto 55px;box-shadow:0 20px 70px #0003}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--muted);font-size:.9rem}.track{height:7px;background:#3a3052;border-radius:99px;overflow:hidden;margin:12px 0 30px}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--lav));transition:width .25s}.qnum{color:var(--mint);font-weight:800;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}.question{font-size:clamp(1.45rem,4vw,2rem);line-height:1.25;margin:12px 0 22px;letter-spacing:-.025em}.answers{display:grid;gap:12px}.answer{width:100%;text-align:left;display:flex;align-items:center;gap:13px;padding:17px 18px;border:1px solid var(--line);border-radius:16px;background:#211b37;color:var(--ink);font:inherit;cursor:pointer;transition:.18s}.answer:hover,.answer:focus-visible{border-color:var(--pink);background:#302449;transform:translateY(-1px);outline:none}.letter{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:11px;background:#3a2d50;color:var(--pink);font-weight:800}.answer.selected{border-color:var(--mint);background:#20372f}.answer.selected .letter{background:var(--mint);color:#17251f}.controls{display:flex;justify-content:space-between;gap:12px;margin-top:24px}.btn{border:0;border-radius:99px;padding:13px 21px;font:inherit;font-weight:800;cursor:pointer}.primary{background:var(--pink);color:#21152a}.primary:disabled{opacity:.35;cursor:not-allowed}.secondary{background:transparent;color:var(--ink);border:1px solid var(--line)}.note{color:var(--muted);font-size:.84rem;margin-top:18px}.hidden{display:none!important}.result{text-align:center}.type{font-size:clamp(3.5rem,12vw,6rem);letter-spacing:.06em;font-weight:900;color:var(--pink);line-height:1.15;margin:16px 0}.result h2{font-size:clamp(1.8rem,5vw,2.5rem);margin:8px 0}.result p{color:var(--muted)}.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0}.chip{border:1px solid var(--line);border-radius:99px;padding:7px 12px;color:var(--lav);font-size:.85rem}.resultgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;text-align:left;margin:25px 0}.mini{padding:17px;border-radius:16px;background:#211b37;border:1px solid var(--line)}.mini h3{font-size:.95rem;color:var(--mint);margin:0 0 7px}.mini p{font-size:.92rem;margin:0}.foot{text-align:center;color:var(--muted);font-size:.82rem;padding:0 0 35px}.foot a{text-decoration:none}@media(max-width:560px){.resultgrid{grid-template-columns:1fr}.nav{padding-top:17px}.hero{padding-top:30px}.controls .btn{padding:12px 16px}}
+</style>
+</head>
+<body><div class="wrap">
+<nav class="nav"><a class="brand" href="../" style="text-decoration:none">Curio<span>Loop</span> ✦</a><span>YOUR INNER UNIVERSE</span></nav>
+<header class="hero"><div class="spark">✧ ☾ ✧</div><div class="eyebrow">A little self-discovery</div><h1>Find the <em>real you.</em></h1><p>What lights you up? How does your mind make sense of the world? Take this personality quiz and discover a four-letter type, plus a few clues about what makes you wonderfully you.</p></header>
+<main class="panel" id="quizPanel">
+<div id="quiz"><div class="row"><span id="stepLabel">QUESTION 1 OF 12</span><span id="percent">8% explored</span></div><div class="track"><div class="fill" id="progress"></div></div><div class="qnum" id="dimension">YOUR ENERGY</div><h2 class="question" id="question"></h2><div class="answers" id="answers"></div><div class="controls"><button class="btn secondary" id="back" disabled>← Back</button><button class="btn primary" id="next" disabled>Next →</button></div><p class="note">Go with the answer that feels most like you most of the time. There are no right or wrong answers.</p></div>
+<section class="result hidden" id="result" aria-live="polite"></section>
+</main>
+<footer class="foot">Curiosity looks good on you. ✦ <br>Just for fun and self-reflection — not a diagnosis or a definitive measure of personality. Inspired by the four preference pairs used in MBTI-style frameworks; this original quiz is not an official MBTI assessment.</footer>
+</div>
+<script>
+const questions=[
+{d:"YOUR ENERGY",a:"After a busy week, what sounds more refreshing?",x:["Seeing friends and doing something lively","Quiet time to reset in my own space"],t:0},
+{d:"YOUR ENERGY",a:"In a group, you usually…",x:["Think out loud and build on everyone's ideas","Think first, then share once your thoughts are ready"],t:0},
+{d:"YOUR ENERGY",a:"At a party where you know few people, you tend to…",x:["Start conversations and see where they go","Find one person or a quiet corner to settle into"],t:0},
+{d:"HOW YOU NOTICE THE WORLD",a:"When learning something new, you prefer…",x:["Clear examples and practical steps","Big ideas, patterns and possibilities"],t:1},
+{d:"HOW YOU NOTICE THE WORLD",a:"Which kind of detail catches your attention first?",x:["What is actually happening right now","What it could mean or become later"],t:1},
+{d:"HOW YOU NOTICE THE WORLD",a:"Your favourite stories are often the ones that…",x:["Feel realistic and rich in concrete details","Open up imaginative worlds and hidden meanings"],t:1},
+{d:"HOW YOU MAKE DECISIONS",a:"When helping a friend with a difficult choice, you focus on…",x:["What is fair, logical and consistent","How everyone feels and what matters to them"],t:2},
+{d:"HOW YOU MAKE DECISIONS",a:"During a disagreement, you value…",x:["Getting to the clearest, most logical answer","Understanding people and finding common ground"],t:2},
+{d:"HOW YOU MAKE DECISIONS",a:"A compliment that feels especially meaningful is…",x:["“You solve problems so clearly.”","“You really understand people.”"],t:2},
+{d:"HOW YOU ORGANISE LIFE",a:"For a free weekend, you would rather…",x:["Have a rough plan so I can relax","Keep it open and decide as I go"],t:3},
+{d:"HOW YOU ORGANISE LIFE",a:"When working on a project, you usually…",x:["Set milestones and enjoy ticking things off","Explore options and let the plan evolve"],t:3},
+{d:"HOW YOU ORGANISE LIFE",a:"If plans suddenly change, you are more likely to…",x:["Want to reorganise and know what happens next","Adapt quickly and see what the new option brings"],t:3}
+];
+const pairs=[["E","I"],["S","N"],["T","F"],["J","P"]];
+const names={ISTJ:"The Steady Builder",ISFJ:"The Thoughtful Guardian",INFJ:"The Quiet Visionary",INTJ:"The Strategic Dreamer",ISTP:"The Curious Fixer",ISFP:"The Gentle Creator",INFP:"The Idealistic Explorer",INTP:"The Curious Theorist",ESTP:"The Bold Improviser",ESFP:"The Joyful Spark",ENFP:"The Possibility Chaser",ENTP:"The Idea Inventor",ESTJ:"The Organised Leader",ESFJ:"The Warm Connector",ENFJ:"The Inspiring Guide",ENTJ:"The Big-Picture Driver"};
+const desc={
+I:["You often recharge through quiet, focused time and may prefer a few meaningful conversations to a room full of small talk.","Give yourself space to think, while remembering to let people know when you need a breather."],
+E:["You often find energy in interaction, exchanging ideas and discovering things alongside other people.","Make room for solo pauses too; quiet time can help your thoughts catch up with your enthusiasm."],
+S:["You tend to notice what is concrete, present and practical. Details and real examples help ideas click.","Try leaving a little room for possibilities beyond what you can see right now."],
+N:["You tend to connect patterns, imagine possibilities and wonder what something could become.","Ground big ideas with a few practical details to help bring them to life."],
+T:["You often look for consistency, evidence and clear reasoning when deciding what makes sense.","Logic is useful; pairing it with curiosity about people's feelings can give you a fuller picture."],
+F:["You often consider values, relationships and the human impact of a decision.","Care for people matters; remember your own needs and boundaries count too."],
+J:["You may feel comfortable when there is a plan, a decision and a clear next step.","Plans can be helpful, and leaving a little breathing room can make surprises easier."],
+P:["You may enjoy flexibility, exploration and keeping options open until you know more.","Freedom is a strength; small deadlines can help turn exciting ideas into finished things."]
+};
+let index=0, answers=Array(questions.length).fill(null);
+const $=id=>document.getElementById(id);
+function render(){
+ const q=questions[index]; $("stepLabel").textContent="QUESTION "+(index+1)+" OF "+questions.length;
+ $("percent").textContent=Math.round((index+1)/questions.length*100)+"% explored";
+ $("progress").style.width=((index+1)/questions.length*100)+"%"; $("dimension").textContent=q.d;$("question").textContent=q.a;
+ $("answers").innerHTML="";
+ q.x.forEach((txt,j)=>{const b=document.createElement("button");b.className="answer"+(answers[index]===j?" selected":"");b.type="button";b.innerHTML='<span class="letter">'+(j===0?"A":"B")+'</span><span>'+txt+'</span>';b.setAttribute("aria-pressed",answers[index]===j?"true":"false");b.onclick=()=>{answers[index]=j;render()};$("answers").appendChild(b)});
+ $("back").disabled=index===0;$("next").disabled=answers[index]===null;$("next").textContent=index===questions.length-1?"Reveal my type ✨":"Next →";
+}
+$("back").onclick=()=>{if(index>0){index--;render()}};
+$("next").onclick=()=>{if(answers[index]===null)return;if(index<questions.length-1){index++;render()}else showResult()};
+function showResult(){
+ const score=[0,0,0,0];answers.forEach((a,i)=>{score[questions[i].t]+=a===0?1:-1});
+ const type=score.map((v,i)=>v>=0?pairs[i][0]:pairs[i][1]).join("");
+ const axisLabels=[["Extraversion","Introversion"],["Sensing","Intuition"],["Thinking","Feeling"],["Judging","Perceiving"]];
+ const axisCopy=score.map((v,i)=>{const chosen=v>=0?0:1;const strength=Math.abs(v);return {label:axisLabels[i][chosen],other:axisLabels[i][1-chosen],lean:strength>=2?"a clearer preference": "a gentle lean"}}); 
+ $("quiz").classList.add("hidden");const r=$("result");r.classList.remove("hidden");
+ const cards=[["Your energy",desc[type[0]][0]],["Your perspective",desc[type[1]][0]],["Your decisions",desc[type[2]][0]],["Your rhythm",desc[type[3]][0]]];
+ r.innerHTML='<div class="eyebrow">Your CurioLoop personality snapshot</div><div class="type">'+type+'</div><h2>'+names[type]+'</h2><p>One possible lens on how you tend to move through the world.</p><div class="chips">'+axisCopy.map(x=>'<span class="chip">'+x.label+' · '+x.lean+'</span>').join("")+'</div><div class="resultgrid">'+cards.map(c=>'<article class="mini"><h3>'+c[0]+'</h3><p>'+c[1]+'</p></article>').join("")+'</div><div class="mini" style="text-align:left"><h3>A tiny reminder</h3><p>Your type is a starting point for reflection, not a box. You can act differently in different situations, and no type is better than another.</p></div><div class="controls" style="justify-content:center;flex-wrap:wrap"><button class="btn primary" id="again">↻ Take it again</button><button class="btn secondary" id="copy">Copy my result</button></div><p class="note" id="copyNote"></p>';
+ $("again").onclick=()=>{index=0;answers=Array(questions.length).fill(null);r.classList.add("hidden");$("quiz").classList.remove("hidden");render();window.scrollTo({top:0,behavior:"smooth"})};
+ $("copy").onclick=async()=>{const text="My CurioLoop personality snapshot: "+type+" — "+names[type]+". Preferences: "+axisCopy.map(x=>x.label).join(", ")+". Just for fun and self-reflection.";try{await navigator.clipboard.writeText(text);$("copyNote").textContent="Copied! Share your result with a friend ✨"}catch(e){$("copyNote").textContent=text}};
+}
+render();
+</script></body></html>
